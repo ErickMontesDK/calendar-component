@@ -1,0 +1,88 @@
+<div class="availability-card">
+    
+    <header>
+      <h3 class="card-title">Schedule</h3>
+    </header>
+    
+    <div class="formComponent">
+      <span>Calendar to schedule availability</span>
+      <form [formGroup]="availabilityForm">
+
+        <div class="selectedDaysAndHour">
+          <div class="selectDay">
+            <h3>
+              <!-- <fa-icon class="icon text-[#3b5998]" [icon]="faCalendarPlus"></fa-icon>  -->
+              Availability time and date</h3>
+            <mat-button-toggle-group name="daysOfTheWeek" aria-label="daysOfTheWeek" multiple (change)="setDaysofTheWeek($event.value)">
+              <mat-button-toggle value="Monday">Mo</mat-button-toggle>
+              <mat-button-toggle value="Tuesday">Tu</mat-button-toggle>
+              <mat-button-toggle value="Wednesday">We</mat-button-toggle>
+              <mat-button-toggle value="Thursday">Th</mat-button-toggle>
+              <mat-button-toggle value="Friday">Fr</mat-button-toggle>
+              <mat-button-toggle value="Saturday">Sa</mat-button-toggle>
+              <mat-button-toggle value="Sunday">Su</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          
+          <div class="hourelement">
+            <label for="from">From:</label>
+            <igx-time-picker 
+              id="from"
+              formControlName="fromHour"
+              [itemsDelta]="{hours:1, minutes:30}"
+              [inputFormat]="'hh:mm tt'"
+              [displayFormat]="'shortTime'"
+              (validationFailed)="onValidationFailed()"
+              (valueChange)="limitToHourOptions($event)"
+              aria-placeholder="HH AM"
+              [spinLoop]="false">
+            </igx-time-picker>
+            
+            <label for="to">To:</label>
+            <igx-time-picker 
+              id="to"
+              formControlName="toHour"
+              [itemsDelta]="{hours:1, minutes:30}"
+              [inputFormat]="'hh:mm tt'"
+              [displayFormat]="'shortTime'"
+              [minValue]="min"
+              [maxValue]="max"
+              (validationFailed)="onValidationFailed()"
+              [spinLoop]="false">
+            </igx-time-picker>
+          
+            <igx-toast #toast>Value must be between {{min}} and {{max}}.</igx-toast>
+          </div>
+          
+          <button class="sendData" (click)="sendData()">
+            Update Schedule
+          </button>
+        </div>
+
+
+        <div class="card habit-tracker">
+          <mat-calendar 
+          #calendar 
+          (selectedChange)="daySelected($event,calendar)" 
+          [dateClass]="dateClass"
+          (click)="daysSelected()"></mat-calendar>
+        </div>  
+      </form>
+    </div>
+
+    <div class="displayCardDates">
+      <div class="cardDate" *ngFor="let date of exampleDates">
+        <div class="title">Work time 
+          <div class="buttons">
+            <button class="edit" (click)="editar()">E</button>
+            <button class="delete" (click)="delete()">D</button>
+          </div>
+        </div>
+        <span class="days">{{date.days.toString()}}</span>
+        <span class="hour">{{date.from}} to {{date.to}}</span>
+        
+      </div>
+    </div>
+    
+</div>
+

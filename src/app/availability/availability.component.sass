@@ -1,0 +1,206 @@
+$font-size-big: 24px
+$font-size-detail: 16px
+$color-blue-light: #617EF2
+$color-blue-navy: #1640ec
+$color-blue-dark: #3a4875
+$color-blue-selected: #a3b4f7
+$width-size: 560px
+
+//General Frame 
+.availability-card
+  display: grid
+  width: 100%
+  grid-template-columns: $width-size 500px
+  grid-template-rows: 1fr auto
+  grid-template-areas: "header header" "form dates"
+  column-gap: 40px
+//title
+header
+  min-width: 100%
+  grid-area: header
+  text-align: center
+  h3
+    margin-top: 0
+
+//Formulario
+.formComponent 
+  grid-area: form
+  .sendData
+    width: 236px
+    height: 48px
+    background: $color-blue-light
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: 4px
+    font-size: $font-size-big
+    color: #F7F8FA
+    border: 0px
+    align-self: flex-end
+  
+//Timepicker
+.igx-time-picker__item
+  color: black
+  &:hover
+    background: $color-blue-selected
+    color: black
+    border-radius: 0
+.igx-time-picker__buttons
+  *
+    color: black
+    &:hover
+      color: $color-blue-navy
+
+//Calendario
+.habit-tracker
+    width: 100%
+    margin-top: 40px
+.mat-calendar-body-cell
+  padding-top: 10px
+  .mat-calendar-body-cell-content
+    font-size: $font-size-big
+    width: 36px
+    height: 36px
+    position: relative
+    top:50%
+    left: 50%
+    transform: translate(-50%, -50%)
+.mat-calendar-body-cell.selected
+  .mat-calendar-body-cell-content
+    border: 2px solid $color-blue-light
+    border-radius: 100%
+.mat-calendar-body-cell.setted
+  .mat-calendar-body-cell-content
+    border: 2px solid $color-blue-light
+    border-radius: 100%
+.mat-calendar-body-today
+  color: #F7F8FA !important
+  ~ .mat-calendar-body-cell-preview
+    background: $color-blue-navy !important
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) 
+    border-color: #F7F8FA
+.mat-calendar-header 
+    padding-top: 0px !important
+    height: 52px
+    display: flex
+    padding: 10px 10px !important
+    border-radius: 12px 12px 0 0 
+    .mat-calendar-controls
+      width: 100%
+      margin: 0 0 !important
+      justify-content: space-between
+    .mdc-button__label, button
+      color: white
+      svg
+        fill: white
+.mat-calendar-body 
+  tr[aria-hidden="true"]
+    display: none
+  .mat-calendar-body-label
+    visibility: hidden
+.mat-calendar-header
+  background: $color-blue-dark
+  *
+    font-size: $font-size-big !important
+.mat-calendar-table-header
+  height: 40px
+  span[aria-hidden]
+    font-size: $font-size-big
+    color: #000000
+  th[scope="col"]
+    height: 40px
+    opacity: 50%
+    .cdk-visually-hidden
+      display: none
+    span
+      position: relative
+      transform: translateY(-50%)
+      color: #000000
+.mat-button-toggle-group-appearance-standard
+  border-radius: 0 !important
+
+mat-button-toggle-group
+  width: 100%
+  height: 40px
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  mat-button-toggle
+    width: 100%
+    span
+      line-height: 40px !important
+  .mat-button-toggle-checked 
+    background-color: $color-blue-navy
+    span
+      color: white
+
+.hourelement
+  display: flex
+  flex-direction: row
+  align-items: center
+  gap: 10px
+
+
+.igx-input-group__bundle
+  display: flex
+  flex-direction: row
+  max-width: 108px 
+  height: 44px
+  padding: 0 10px 0 3px
+  justify-content: space-between
+  background: #F7F8FA
+  border: 1px solid #A4AABF
+  border-radius: 8px
+  igx-prefix
+    padding: 0
+    margin: 0
+    order: 2
+  igx-suffix
+    display: none
+  .igx-input-group__input
+    width: 70px
+    font-size: $font-size-detail
+    font-stretch: narrower
+    order: 1
+
+.selectDay
+  h3
+    color: #222B45
+    font-size: $font-size-big
+    line-height: 32px
+
+.selectedDaysAndHour
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  height: 232px
+
+.displayCardDates
+  grid-area: dates
+  background: grey
+  display: flex
+  flex-direction: column
+  row-gap: 20px
+  .cardDate
+    width: 100%
+    height: 152px
+    background: #dfdfdf
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: 20px
+    padding: 20px
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 8px
+    .title
+      display: inherit
+      font-size: 20px
+      width: 100%
+      flex-direction: row
+      justify-content: space-between
+      .buttons
+        display: inherit
+        gap: 20px
+        button
+          width: 32px
+          aspect-ratio: 1/1
+    .days, .hour
+      font-size: 16px
